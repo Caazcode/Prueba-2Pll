@@ -43,6 +43,9 @@ public class PruebaArchivosPII {
                 case 3:
                     completarTarea(sc);
                     break;
+                 case 4:
+                    System.out.println("Saliendo...");
+                    break;
                 default:
                     System.out.println("Opion no valida. ");
             }
@@ -92,16 +95,21 @@ public class PruebaArchivosPII {
                 int c;
                 String linea = "";
                 
-                while((c = leer.read()) != -1){
-                    
-                    if(c == '\n'){
-                        System.out.println(numero + ". " + linea);
-                        numero++;
+                while ((c = leer.read()) != -1) {
+                    if (c == '\n') {
+                        if (!linea.trim().equals("")) { 
+                            System.out.println(numero + ". " + linea.trim()); 
+                            numero++;
+                        }
                         linea = "";
-                    } else {
+                    } else if (c != '\r') { 
                         linea += (char) c;
                     }
-                     
+                }
+
+               
+                if (!linea.trim().equals("")) {
+                    System.out.println(numero + ". " + linea.trim());
                 }
                 
              if (!linea.equals("")) {
